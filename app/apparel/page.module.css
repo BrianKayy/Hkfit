@@ -1,0 +1,200 @@
+.page {
+  background: white;
+}
+
+.intro {
+  display: flex;
+  min-height: 405px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding: clamp(72px, 10vw, 145px) clamp(20px, 6vw, 95px) 65px;
+  background: linear-gradient(118deg, #fff 0 70%, #eef2ff 70%);
+}
+
+.intro > div > p {
+  margin: 0 0 20px;
+  color: #1557ff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: clamp(58px, 8.2vw, 128px);
+  font-weight: 800;
+  line-height: 0.79;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+}
+
+.intro h1 em {
+  color: #1557ff;
+  font-style: normal;
+}
+
+.introCopy {
+  max-width: 335px;
+  margin: 0 0 7px;
+  color: #606060;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.collection {
+  width: min(1640px, 100%);
+  margin: auto;
+  padding: clamp(66px, 8vw, 120px) clamp(16px, 4vw, 64px);
+}
+
+.collectionBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 40px;
+  padding-bottom: 21px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.collectionBar > div:first-child {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.collectionBar h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.collectionBar span {
+  color: #777;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.filters button {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  color: #777;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.filters button:hover,
+.filters .active {
+  border-color: #1557ff;
+  color: #111;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 42px clamp(14px, 2vw, 28px);
+}
+
+.imageNote {
+  display: flex;
+  max-width: 850px;
+  gap: 16px;
+  margin: 0 auto;
+  padding: 0 20px 90px;
+  color: #6f6f6f;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.imageNote span {
+  color: #1557ff;
+  font-size: 21px;
+}
+
+.imageNote p {
+  margin: 0;
+}
+
+.imageNote code {
+  color: #222;
+  font-family: inherit;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 830px) {
+  .intro {
+    min-height: 365px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .introCopy {
+    max-width: 430px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .intro {
+    min-height: 330px;
+    padding: 78px 20px 46px;
+    background: linear-gradient(145deg, #fff 0 68%, #eef2ff 68%);
+  }
+
+  .intro h1 {
+    font-size: clamp(55px, 16vw, 76px);
+  }
+
+  .collection {
+    padding: 64px 16px;
+  }
+
+  .collectionBar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .filters {
+    max-width: 100%;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    white-space: nowrap;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .imageNote {
+    padding-bottom: 70px;
+  }
+}

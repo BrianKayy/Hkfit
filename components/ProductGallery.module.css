@@ -1,0 +1,108 @@
+.gallery {
+  min-width: 0;
+}
+
+.primary {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: #e9e9e9;
+}
+
+.primary img {
+  object-fit: cover;
+}
+
+.primary > span {
+  position: absolute;
+  right: 17px;
+  bottom: 17px;
+  padding: 8px 10px;
+  background: rgba(9, 9, 9, 0.85);
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.fallback {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  background: linear-gradient(145deg, #f8f8f8, #dedede);
+  color: #1557ff;
+  font-size: 80px;
+  font-weight: 900;
+  letter-spacing: -0.13em;
+}
+
+.fallback span {
+  display: block;
+  margin-top: -78px;
+  color: #777;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+
+.thumbnails {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.thumbnails button {
+  height: 45px;
+  border: 1px solid #dedede;
+  background: #f6f6f6;
+  color: #777;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.thumbnails button[aria-pressed="true"] {
+  border-color: #1557ff;
+  background: #1557ff;
+  color: white;
+}
+
+@media (max-width: 500px) {
+  .thumbnails {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+
+.navigation {
+  position: absolute;
+  left: 17px;
+  bottom: 17px;
+  display: flex;
+}
+
+.navigation button {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 0;
+  background: white;
+  color: #111;
+  font-size: 16px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.navigation button:hover {
+  background: #1557ff;
+  color: white;
+} 
