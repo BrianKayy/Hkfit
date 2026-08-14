@@ -24,7 +24,16 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <p className={styles.copy}>Made for movement without compromise. Your eight product images will appear in this gallery once placed in the matching apparel folder.</p>
           <div className={styles.choices}><span>Available colours</span><div>{product.colors.map((color) => <i key={color.label} title={color.label} style={{ background: color.value }} />)}</div></div>
           <div className={styles.choices}><span>Available sizes</span><div>{product.sizes.map((size) => <i key={size}>{size}</i>)}</div></div>
-          <div className={styles.add}><AddToCartButton productName={product.name} /></div>
+          <div className={styles.add}><AddToCartButton
+  item={{
+    slug: product.slug,
+    name: product.name,
+    price: product.price,
+    image: product.images[0] ?? "",
+    color: product.colors[0]?.label,
+    size: product.sizes[0],
+  }}
+/></div>
           <p className={styles.delivery}>Complimentary delivery on orders over $150.</p>
         </div>
       </section>
