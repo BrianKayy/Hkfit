@@ -3,10 +3,56 @@ import Link from "next/link";
 import AddToCartButton from "@/components/AddToCartButton";
 import styles from "./page.module.css";
 
-const products = [
-  { name: "Women’s 3 Set Seamless Active Wear", price: "00.00", image: "/images/s1.jpeg", tag: "New" },
-  { name: "Men’s Athletic Training Shorts", price: "00.00", image: "/images/s2.jpeg", tag: "Best seller" },
-  { name: "Men’s Physique Zipper Slim Fit Long Sleeve T-Shirt", price: "00.00", image: "/images/s3.jpeg", tag: "Limited" },
+const products =  [
+  {
+    slug: "womens-seamless-three-piece-set",
+    name: "Women's 3 Set Seamless Activewear",
+    price: "00.00",
+    image: "/images/s1.jpeg",
+    tag: "New",
+  },
+  {
+    slug: "mens-lightweight-two-piece-athletic-set",
+    name: "Men's Lightweight 2 Piece Athletic Set",
+    price: "00.00",
+    image: "/images/f9.jpeg",
+    tag: "Best seller",
+  },
+  {
+    slug: "womens-high-waisted-v-flare-leggings",
+    name: "Women's High-Waisted V-Flared Leggings",
+    price: "00.00",
+    image: "/images/f3.jpeg",
+    tag: "Limited",
+  },
+  {
+    slug: "mens-short-sleeve-seamless-dry-fit-tshirt",
+    name: "Men's Short-Sleeve Seamless Dry-Fit T-Shirt",
+    price: "00.00",
+    image: "/images/f10.jpeg",
+     tag: "Exclusive"
+  },
+  {
+    slug: "flex-mens-dry-fit-fitness-trousers",
+    name: "Flex Men's Dry-Fit Fitness Trousers",
+    price: "00.00",
+    image: "/images/f5.jpeg",
+     tag: "Unique"
+  },
+  {
+    slug: "mens-physique-zip-long-sleeve-tshirt",
+    name: "Men's Physique Zipper Slim-Fit Long-Sleeve T-Shirt",
+    price: "00.00",
+    image: "/images/s3.jpeg",
+    tag: "Limited",
+  },
+  {
+    slug: "mens-athletic-training-shorts",
+    name: "Men's Athletic Training Shorts",
+    price: "00.00",
+    image: "/images/f7.jpeg",
+    tag: "New",
+  },
 ];
 
 const programs = [
@@ -22,7 +68,7 @@ export default function Home() {
   return (
     <main>
       <section className={styles.hero} aria-labelledby="hero-heading">
-        <Image className={styles.heroImage} src="/images/hero.png" alt="HkFitness athlete in a concrete training studio" fill priority sizes="100vw" />
+        <Image className={styles.heroImage} src="/images/hore.png" alt="HkFitness athlete in a concrete training studio" fill priority sizes="100vw" />
         <div className={styles.heroShade} />
         <div className={styles.heroContent}>
           <p className={styles.eyebrow}><span /> Performance, redefined</p>
@@ -54,7 +100,7 @@ export default function Home() {
         </div>
         <div className={styles.productGrid}>
           {products.map((product) => (
-            <article className={styles.productCard} key={product.name}>
+            <article className={styles.productCard} key={product.slug}>
               <Link className={styles.productVisual} href="/apparel">
                 <Image src={product.image} alt={product.name} fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw" />
                 <span className={styles.productTag}>{product.tag}</span>
@@ -62,7 +108,14 @@ export default function Home() {
               </Link>
               <div className={styles.productDetails}>
                 <div><h3>{product.name}</h3><p>{product.price}</p></div>
-                <AddToCartButton productName={product.name} />
+                <AddToCartButton
+  item={{
+    slug: product.slug,
+    name: product.name,
+    price: product.price,
+    image: product.image,
+  }}
+/>
               </div>
             </article>
           ))}

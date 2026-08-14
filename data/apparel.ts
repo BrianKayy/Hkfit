@@ -35,7 +35,7 @@ export const apparelProducts: ApparelProduct[] = [
   {
     slug: "womens-high-waisted-v-flare-leggings",
     name: "Women's High-Waisted V-Flare Leggings",
-    price: "$58.00",
+    price: "00.00",
     category: "Women / Bottoms",
     label: "New arrival",
     colors: [
@@ -49,7 +49,7 @@ export const apparelProducts: ApparelProduct[] = [
   {
     slug: "womens-seamless-wide-leg-set",
     name: "Women's Seamless Two-Piece Wide-Leg Activewear Set",
-    price: "$64.00",
+    price: "00.00",
     category: "Women / Sets",
     label: "Best seller",
     colors: [
@@ -63,7 +63,7 @@ export const apparelProducts: ApparelProduct[] = [
   {
     slug: "womens-seamless-three-piece-set",
     name: "Women's Seamless Three-Piece Activewear Set",
-    price: "$110.00",
+    price: "00.00",
     category: "Women / Sets",
     label: "Complete set",
     colors: [
@@ -77,7 +77,7 @@ export const apparelProducts: ApparelProduct[] = [
   {
     slug: "mens-lightweight-two-piece-athletic-set",
     name: "Men's Lightweight Two-Piece Athletic Set",
-    price: "$72.00",
+    price: "00.00",
     category: "Men / Sets",
     label: "Performance",
     colors: [
@@ -91,7 +91,7 @@ export const apparelProducts: ApparelProduct[] = [
   {
     slug: "mens-short-sleeve-seamless-dry-fit-tshirt",
     name: "Men's Short-Sleeve Seamless Dry-Fit Athletic T-Shirt",
-    price: "$78.00",
+    price: "00.00",
     category: "Men / Tops",
     label: "Training essential",
     colors: [
@@ -105,7 +105,7 @@ export const apparelProducts: ApparelProduct[] = [
   {
     slug: "mens-athletic-training-shorts",
     name: "Men's Athletic Training Shorts",
-    price: "$128.00",
+    price: "00.00",
     category: "Men / Bottoms",
     label: "Built to move",
     colors: [
@@ -119,7 +119,7 @@ export const apparelProducts: ApparelProduct[] = [
   {
     slug: "flex-mens-dry-fit-fitness-trousers",
     name: "Flex Men's Dry-Fit Fitness Trousers",
-    price: "$96.00",
+    price: "00.00",
     category: "Men / Bottoms",
     label: "Flex collection",
     colors: [
@@ -133,7 +133,7 @@ export const apparelProducts: ApparelProduct[] = [
   {
     slug: "mens-physique-zip-long-sleeve-tshirt",
     name: "Men's Physique Slim-Fit Zip Long-Sleeve T-Shirt",
-    price: "$54.00",
+    price: "00.00",
     category: "Men / Tops",
     label: "Physique collection",
     colors: [

@@ -62,7 +62,18 @@ export default function ApparelProductCard({ product }: { product: ApparelProduc
         </div>
 
         <div className={styles.addButton}>
-          <AddToCartButton productName={`${product.name}, ${selectedColor.label}, size ${selectedSize}`} />
+          <div className={styles.addButton}>
+  <AddToCartButton
+    item={{
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      image: product.images[imageIndex] ?? product.images[0],
+      color: selectedColor.label,
+      size: selectedSize,
+    }}
+  />
+</div>
         </div>
       </div>
     </article>

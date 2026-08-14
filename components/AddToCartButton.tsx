@@ -1,34 +1,33 @@
 "use client";
 
-import { useState } from "react";
-import { useCart } from "@/components/CartProvider";
+import { useEffect, useRef, useState } from "react";
+import { type CartItemInput, useCart } from "./CartProvider";
 
-type AddToCartButtonProps = {
-  productName: string;
-};
-
-export default function AddToCartButton({
-  productName,
-}: AddToCartButtonProps) {
+export default function AddToCartButton({ item }: { item: CartItemInput }) {
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
+  const timer = useRef<number | null>(null);
 
-  function handleAddToCart() {
-    addItem();
+  useEffect(() => {
+    return () => {
+      if (timer.current) window.clearTimeout(timer.current);
+    };
+  }, []);
+
+  function handleClick() {
+    addItem(item);
     setAdded(true);
-
-    window.setTimeout(() => {
-      setAdded(false);
-    }, 1200);
+    if (timer.current) window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setAdded(false), 1400);
   }
 
   return (
     <button
       type="button"
-      onClick={handleAddToCart}
-      aria-label={`Add ${productName} to cart`}
+      onClick={handleClick}
+      aria-label={added ? `${item.name} added to cart` : `Add ${item.name} to cart`}
     >
-      <span>{added ? "Added" : "Add to cart"}</span>
+      <span aria-live="polite">{added ? "Added to cart" : "Add to cart"}</span>
       <span aria-hidden="true">{added ? "✓" : "+"}</span>
     </button>
   );

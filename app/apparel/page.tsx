@@ -10,10 +10,7 @@ export const metadata = {
 export default function ApparelPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.intro}>
-        <div><p>01 / The collection</p><h1>Engineered<br />for <em>the work.</em></h1></div>
-        <p className={styles.introCopy}>Technical essentials designed to move from the gym to everything after it. Built with intention. Made to last.</p>
-      </section>
+      
 
       <section className={styles.collection} aria-labelledby="collection-title">
         <div className={styles.collectionBar}>
@@ -26,7 +23,7 @@ export default function ApparelPage() {
       </section>
 
       <aside className={styles.imageNote}>
-        <span>↳</span><p>Every piece includes an 8-image product gallery. Add your own files to <code>public/images/apparel/&lt;product-slug&gt;/01.jpg</code> through <code>08.jpg</code>.</p>
+        
       </aside>
     </main>
   );

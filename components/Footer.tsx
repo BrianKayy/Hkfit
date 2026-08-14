@@ -31,16 +31,7 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
-      <section className={styles.cta} aria-labelledby="footer-cta-title">
-        <div>
-          <p><span /> Your next level starts here</p>
-          <h2 id="footer-cta-title">No shortcuts.<br /><em>Just progress.</em></h2>
-        </div>
-        <Link href="/coaching" aria-label="Start your HkFitness journey">
-          <span>Start your<br />journey</span>
-          <b aria-hidden="true">↗</b>
-        </Link>
-      </section>
+     
 
       <div className={styles.main}>
         <div className={styles.topGrid}>
