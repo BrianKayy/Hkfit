@@ -116,7 +116,7 @@ export default function CartPage() {
                   </div>
 
                   <div className={styles.itemActions}>
-                    <strong>{formatCartMoney(item.unitPriceMinor * item.quantity, item.currency)}</strong>
+                    <strong>{(item.unitPriceMinor === 0 ? "Price on request" : formatCartMoney(item.unitPriceMinor * item.quantity, item.currency))}</strong>
                     <div className={styles.quantity} aria-label={`Quantity for ${item.name}`}>
                       <button
                         type="button"
@@ -145,14 +145,14 @@ export default function CartPage() {
             <p>Order summary</p>
             <h2 id="summary-title">Ready when<br />you are.</h2>
             <dl>
-              <div><dt>Subtotal</dt><dd>{formatCartMoney(subtotalMinor, currency)}</dd></div>
-              <div><dt>Delivery</dt><dd>Calculated at checkout</dd></div>
-              <div className={styles.total}><dt>Estimated total</dt><dd>{formatCartMoney(subtotalMinor, currency)}</dd></div>
+              <div><dt>Subtotal</dt><dd>{(items.some(item => item.unitPriceMinor === 0) ? "Price on request" : formatCartMoney(subtotalMinor, currency))}</dd></div>
+              <div><dt>Delivery</dt><dd>Confirmed with your order</dd></div>
+              <div className={styles.total}><dt>Estimated total</dt><dd>{(items.some(item => item.unitPriceMinor === 0) ? "Price on request" : formatCartMoney(subtotalMinor, currency))}</dd></div>
             </dl>
             <button className={styles.checkout} type="button" disabled title="Payment checkout will be connected next">
-              Checkout setup next <span aria-hidden="true">→</span>
+              Online checkout coming soon <span aria-hidden="true">→</span>
             </button>
-            <p className={styles.checkoutNote}>Your cart is saved on this device. Secure payment will be connected in the checkout step.</p>
+            <p className={styles.checkoutNote}>Your selection is saved on this device. Contact customer care for pricing and ordering assistance.</p>
             <Link className={styles.continue} href="/apparel">← Continue shopping</Link>
           </aside>
         </section>
@@ -160,3 +160,4 @@ export default function CartPage() {
     </main>
   );
 }
+

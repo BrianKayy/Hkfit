@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HKFitness apparel store
 
-## Getting Started
+Next.js apparel storefront with responsive collections, product variants, a persistent shopping bag, and Supabase customer accounts.
 
-First, run the development server:
+## Run
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- `npm install`
+- `npm run dev`
+- `npm run lint`
+- `npm run build`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Enable customer accounts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env.local` and fill in your Supabase project URL and publishable key. Never use a service-role or secret key in a NEXT_PUBLIC variable. Restart the server after changing configuration.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+In Supabase Authentication, enable Email authentication and configure the Site URL for your deployed domain. Add `http://localhost:3000/account` and your production `/account` URL to the redirect allowlist. Configure production SMTP for confirmation and password recovery emails.
 
-## Learn More
+The account page supports signup, email confirmation, password sign-in, persisted provider sessions, sign-out, recovery email, and password updates. The SDK handles session renewal. No order data or private database tables are exposed by this implementation. Add server-side identity verification and RLS before connecting private customer data.
 
-To learn more about Next.js, take a look at the following resources:
+Reference: https://supabase.com/docs/guides/auth/passwords
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Catalog and commerce
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Edit `data/apparel.ts` for the catalog. Existing zero prices are displayed as “Price on request”; set real prices before connecting checkout. Product images use local cover images and existing Supabase galleries. Checkout is not connected. Customer care opens a prepared email in the visitor's email app and does not claim to submit an enquiry.
 
-## Deploy on Vercel
+## Verification before launch
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+With a configured Supabase test project, verify signup and confirmation, incorrect-password handling, sign-in and reload persistence, sign-out, and the complete password recovery email flow. Live authentication cannot be verified without project configuration.

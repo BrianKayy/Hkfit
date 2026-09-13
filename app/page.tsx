@@ -1,151 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
-import AddToCartButton from "@/components/AddToCartButton";
+import { apparelProducts } from "@/data/apparel";
 import styles from "./page.module.css";
-
-const products =  [
-  {
-    slug: "womens-seamless-three-piece-set",
-    name: "Women's 3 Set Seamless Activewear",
-    price: "00.00",
-    image: "/images/s1.jpeg",
-    tag: "New",
-  },
-  {
-    slug: "mens-lightweight-two-piece-athletic-set",
-    name: "Men's Lightweight 2 Piece Athletic Set",
-    price: "00.00",
-    image: "/images/f9.jpeg",
-    tag: "Best seller",
-  },
-  {
-    slug: "womens-high-waisted-v-flare-leggings",
-    name: "Women's High-Waisted V-Flared Leggings",
-    price: "00.00",
-    image: "/images/f3.jpeg",
-    tag: "Limited",
-  },
-  {
-    slug: "mens-short-sleeve-seamless-dry-fit-tshirt",
-    name: "Men's Short-Sleeve Seamless Dry-Fit T-Shirt",
-    price: "00.00",
-    image: "/images/f10.jpeg",
-     tag: "Exclusive"
-  },
-  {
-    slug: "flex-mens-dry-fit-fitness-trousers",
-    name: "Flex Men's Dry-Fit Fitness Trousers",
-    price: "00.00",
-    image: "/images/f5.jpeg",
-     tag: "Unique"
-  },
-  {
-    slug: "mens-physique-zip-long-sleeve-tshirt",
-    name: "Men's Physique Zipper Slim-Fit Long-Sleeve T-Shirt",
-    price: "00.00",
-    image: "/images/s3.jpeg",
-    tag: "Limited",
-  },
-  {
-    slug: "mens-athletic-training-shorts",
-    name: "Men's Athletic Training Shorts",
-    price: "00.00",
-    image: "/images/f7.jpeg",
-    tag: "New",
-  },
-];
-
-const programs = [
-  { name: "Weight loss", image: "/images/t4.png", description: "Sustainable fat loss with a plan built around you." },
-  { name: "Muscle gain", image: "/images/t5.png", description: "Progressive strength programming for measurable growth." },
-  { name: "Nutrition", image: "/images/t6.png", description: "Practical nutrition that supports your training and life." },
-  { name: "Custom workouts", image: "/images/t2.png", description: "Every session shaped around your body and goals." },
-  { name: "Online coaching", image: "/images/t3.png", description: "Expert structure and accountability, wherever you train." },
-  { name: "Personal guidance", image: "/images/t1.png", description: "Focused one-to-one attention at every stage." },
-];
-
+const edit = [2, 7, 0, 3];
 export default function Home() {
-  return (
-    <main>
-      <section className={styles.hero} aria-labelledby="hero-heading">
-        <Image className={styles.heroImage} src="/images/hore.png" alt="HkFitness athlete in a concrete training studio" fill priority sizes="100vw" />
-        <div className={styles.heroShade} />
-        <div className={styles.heroContent}>
-          <p className={styles.eyebrow}><span /> Performance, redefined</p>
-          <h1 id="hero-heading">Wear the standard.<br /><em>Train the lifestyle.</em></h1>
-          <p className={styles.heroCopy}>Premium apparel, expert coaching,<br className={styles.desktopBreak} /> unstoppable results.</p>
+  return <main>
+    <section className={styles.hero} aria-labelledby="campaign-title">
+      <div className={styles.heroVisual}>
+        <Image src="/images/hk-campaign.jpeg" alt="Two models wearing HK Fitness essentials in charcoal and grey against a sunlit brick wall" fill loading="eager" fetchPriority="high" sizes="100vw" />
+      </div>
+      <div className={styles.heroCopy}>
+        <p className="eyebrow">HK Fitness — The everyday collection</p>
+        <h1 id="campaign-title">The art of<br /><em>moving well.</em></h1>
+        <div className={styles.heroBottom}>
+          <p>Refined in form. Effortless in motion.</p>
           <div className={styles.heroActions}>
-            <Link className={styles.primaryButton} href="/apparel">Shop collection <span>↗</span></Link>
-            <Link className={styles.secondaryButton} href="/coaching">Start training <span>→</span></Link>
+            <Link href="/apparel?collection=Women">Shop women <span>↗</span></Link>
+            <Link href="/apparel?collection=Men">Shop men <span>↗</span></Link>
           </div>
         </div>
-        <div className={styles.heroIndex}>HK / 001</div>
-      </section>
-
-      <section className={styles.promises} aria-label="Why choose HkFitness">
-        <article className={styles.promise}>
-          <div className={`${styles.promiseIcon} ${styles.qualityIcon}`} aria-hidden="true"><span /></div>
-          <div><h2>Premium quality</h2><p>High-performance fabrics<br />built to last.</p></div>
-        </article>
-        <article className={styles.promise}>
-          <div className={`${styles.promiseIcon} ${styles.coachIcon}`} aria-hidden="true"><span /></div>
-          <div><h2>Expert coaching</h2><p>Programs designed by a<br />certified professional.</p></div>
-        </article>
-      </section>
-
-      <section id="featured" className={styles.featured} aria-labelledby="featured-heading">
-        <div className={styles.sectionHeader}>
-          <div><p className={styles.sectionNumber}>01 / Apparel</p><h2 id="featured-heading">Featured pieces</h2></div>
-          <Link href="/apparel">View all apparel <span>↗</span></Link>
-        </div>
-        <div className={styles.productGrid}>
-          {products.map((product) => (
-            <article className={styles.productCard} key={product.slug}>
-              <Link className={styles.productVisual} href="/apparel">
-                <Image src={product.image} alt={product.name} fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw" />
-                <span className={styles.productTag}>{product.tag}</span>
-                <span className={styles.productArrow} aria-hidden="true">↗</span>
-              </Link>
-              <div className={styles.productDetails}>
-                <div><h3>{product.name}</h3><p>{product.price}</p></div>
-                <AddToCartButton
-  item={{
-    slug: product.slug,
-    name: product.name,
-    price: product.price,
-    image: product.image,
-  }}
-/>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className={styles.training} aria-labelledby="training-heading">
-        <div className={styles.trainingHeader}>
-          <div>
-            <p className={styles.sectionNumber}>02 / Coaching</p>
-            <h2 id="training-heading">Built around<br /><em>your goals.</em></h2>
-          </div>
-          <p>Tailored coaching with the structure, expertise, and accountability to move you forward.</p>
-        </div>
-        <div className={styles.programGrid}>
-          {programs.map((program, index) => (
-            <Link className={styles.programCard} href="/coaching" key={program.name}>
-              <Image src={program.image} alt={`${program.name} training program`} fill sizes="(max-width: 700px) 100vw, (max-width: 1050px) 50vw, 33vw" />
-              <span className={styles.programShade} />
-              <span className={styles.programNumber}>0{index + 1}</span>
-              <span className={styles.programContent}>
-                <b>{program.name}</b>
-                <small>{program.description}</small>
-              </span>
-              <span className={styles.programArrow} aria-hidden="true">↗</span>
-            </Link>
-          ))}
-        </div>
-        <Link className={styles.trainingCta} href="/coaching">Explore all coaching <span>→</span></Link>
-      </section>
-    </main>
-  );
+      </div>
+      <span className={styles.campaignIndex}>COLLECTION 01 / EVERYDAY, ELEVATED</span>
+    </section>
+    <div className={styles.strip}><span>Considered design</span><span>Everyday versatility</span><span>Understated by nature</span></div>
+    <section className={styles.section}>
+      <div className={styles.heading}><div><p className="eyebrow">01 / The curated edit</p><h2>Everyday. <em>Exceptional.</em></h2></div><Link className="text-link" href="/apparel">Explore the collection ↗</Link></div>
+      <div className={styles.products}>{edit.map(index => { const p = apparelProducts[index]; return <Link className={styles.product} key={p.slug} href={`/apparel/${p.slug}`}><div><Image src={p.images[0]} alt={p.name} fill sizes="(max-width: 700px) 45vw, 23vw"/><span>Discover ↗</span></div><p>{p.category}</p><h3>{p.name}</h3><small>{Number(p.price) === 0 ? "Price on request" : p.price}</small></Link>; })}</div>
+    </section>
+    <section className={styles.categories} aria-label="Shop by collection">
+      <Link href="/apparel?collection=Women"><Image src="/images/f3.jpeg" alt="Women's flared leggings" fill sizes="(max-width: 700px) 100vw, 50vw"/><div><p className="eyebrow">Form meets freedom</p><h2>For her.</h2><span>Shop women ↗</span></div></Link>
+      <Link href="/apparel?collection=Men"><Image src="/images/s3.jpeg" alt="Men's fitted zip top" fill sizes="(max-width: 700px) 100vw, 50vw"/><div><p className="eyebrow">The modern uniform</p><h2>For him.</h2><span>Shop men ↗</span></div></Link>
+    </section>
+    <section className={styles.manifesto}><p className="eyebrow">The HK perspective</p><h2>Good style doesn’t<br />need to <em>say much.</em></h2><p>Clean lines. A considered palette. Pieces that belong together.<br />Discover a more effortless approach to getting dressed.</p><Link className="text-link" href="/about">Our philosophy ↗</Link></section>
+  </main>;
 }
+

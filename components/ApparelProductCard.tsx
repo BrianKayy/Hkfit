@@ -24,14 +24,14 @@ export default function ApparelProductCard({ product }: { product: ApparelProduc
         <Link href={`/apparel/${product.slug}`} className={styles.imageLink} aria-label={`View ${product.name}`}>
           {imageFailed ? (
             <div className={styles.imageFallback}>
-              <span>HK</span><small>Image {String(imageIndex + 1).padStart(2, "0")} / 08</small>
+              <span>HK</span><small>Image {String(imageIndex + 1).padStart(2, "0")} / {String(product.images.length).padStart(2, "0")}</small>
             </div>
           ) : (
             <Image src={product.images[imageIndex]} alt={`${product.name}, image ${imageIndex + 1}`} fill sizes="(max-width: 620px) 86vw, (max-width: 980px) 48vw, 25vw" onError={() => setImageFailed(true)} />
           )}
         </Link>
         <span className={styles.label}>{product.label}</span>
-        <span className={styles.imageCount}>{String(imageIndex + 1).padStart(2, "0")} / 08</span>
+        <span className={styles.imageCount}>{String(imageIndex + 1).padStart(2, "0")} / {String(product.images.length).padStart(2, "0")}</span>
         <div className={styles.imageActions}>
           <button type="button" onClick={() => changeImage(-1)} aria-label={`Previous ${product.name} image`}>←</button>
           <button type="button" onClick={() => changeImage(1)} aria-label={`Next ${product.name} image`}>→</button>
@@ -41,7 +41,7 @@ export default function ApparelProductCard({ product }: { product: ApparelProduc
       <div className={styles.info}>
         <div className={styles.titleRow}>
           <div><p>{product.category}</p><Link href={`/apparel/${product.slug}`}><h2>{product.name}</h2></Link></div>
-          <strong>{product.price}</strong>
+          <strong>{Number(product.price) === 0 ? "Price on request" : product.price}</strong>
         </div>
 
         <div className={styles.options}>
@@ -79,3 +79,4 @@ export default function ApparelProductCard({ product }: { product: ApparelProduc
     </article>
   );
 }
+

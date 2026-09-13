@@ -1,30 +1,3 @@
-import ApparelProductCard from "@/components/ApparelProductCard";
-import { apparelProducts } from "@/data/apparel";
-import styles from "./page.module.css";
-
-export const metadata = {
-  title: "Apparel | HkFitness",
-  description: "Premium performance apparel engineered for the work.",
-};
-
-export default function ApparelPage() {
-  return (
-    <main className={styles.page}>
-      
-
-      <section className={styles.collection} aria-labelledby="collection-title">
-        <div className={styles.collectionBar}>
-          <div><h2 id="collection-title">The collection</h2><span>{apparelProducts.length} pieces</span></div>
-          <div className={styles.filters} aria-label="Product categories"><button type="button" className={styles.active}>All</button><button type="button">Tops</button><button type="button">Bottoms</button><button type="button">Layers</button></div>
-        </div>
-        <div className={styles.grid}>
-          {apparelProducts.map((product) => <ApparelProductCard key={product.slug} product={product} />)}
-        </div>
-      </section>
-
-      <aside className={styles.imageNote}>
-        
-      </aside>
-    </main>
-  );
-}
+import Collection from "@/components/Collection";
+export const metadata={title:"The collection | HKFitness",description:"Discover refined everyday apparel for women and men."};
+export default async function ApparelPage({searchParams}:{searchParams:Promise<{collection?:string}>}){const params=await searchParams;const collection=["Women","Men"].includes(params.collection??"")?params.collection!:"All";return <main><header className="editorial-page" style={{minHeight:0,paddingBottom:0}}><p className="eyebrow">The everyday collection</p><h1 style={{marginBottom:20}}>Your next <em>essential.</em></h1><p>Considered pieces. Endless possibilities.</p></header><Collection key={collection} collection={collection}/></main>}

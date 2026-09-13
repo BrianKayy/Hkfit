@@ -153,8 +153,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    dispatch({ type: "replace", items: readStoredCart() });
-    setReady(true);
+    let active = true;
+    queueMicrotask(() => {
+      if (!active) return;
+      dispatch({ type: "replace", items: readStoredCart() });
+      setReady(true);
+    });
 
     function syncCart(event: StorageEvent) {
       if (event.key === STORAGE_KEY) {
@@ -163,15 +167,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
 
     window.addEventListener("storage", syncCart);
-    return () => window.removeEventListener("storage", syncCart);
+    return () => {
+      active = false;
+      window.removeEventListener("storage", syncCart);
+    };
   }, []);
 
   useEffect(() => {
     if (!ready) return;
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({ version: STORAGE_VERSION, items }),
-    );
+    try {
+      window.localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ version: STORAGE_VERSION, items }),
+      );
+    } catch {
+      // Keep the bag usable when browser storage is unavailable.
+    }
   }, [items, ready]);
 
   const addItem = useCallback((input: CartItemInput) => {

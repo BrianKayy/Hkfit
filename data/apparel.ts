@@ -44,7 +44,7 @@ export const apparelProducts: ApparelProduct[] = [
       { label: "Grey", value: "#9b9b9b" },
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
-    images: gallery("womens-high-waisted-v-flare-leggings",4,),
+    images: ["/images/f3.jpeg", ...gallery("womens-high-waisted-v-flare-leggings",4)],
   },
   {
     slug: "womens-seamless-wide-leg-set",
@@ -58,7 +58,7 @@ export const apparelProducts: ApparelProduct[] = [
       { label: "Blue", value: "#1557ff" },
     ],
     sizes: ["XS", "S", "M", "L", "XL"],
-    images: gallery("womens-seamless-wide-leg-set",5,),
+    images: ["/images/f2.jpeg", ...gallery("womens-seamless-wide-leg-set",5)],
   },
   {
     slug: "womens-seamless-three-piece-set",
@@ -72,7 +72,7 @@ export const apparelProducts: ApparelProduct[] = [
       { label: "Stone", value: "#aaa79e" },
     ],
     sizes: ["XS", "S", "M", "L"],
-    images: gallery("womens-seamless-three-piece-set",14,),
+    images: ["/images/s1.jpeg", ...gallery("womens-seamless-three-piece-set",14)],
   },
   {
     slug: "mens-lightweight-two-piece-athletic-set",
@@ -86,25 +86,25 @@ export const apparelProducts: ApparelProduct[] = [
       { label: "Grey", value: "#777a7d" },
     ],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    images: gallery("mens-lightweight-two-piece-athletic-set",7,),
+    images: ["/images/f9.jpeg", ...gallery("mens-lightweight-two-piece-athletic-set",7)],
   },
   {
     slug: "mens-short-sleeve-seamless-dry-fit-tshirt",
     name: "Men's Short-Sleeve Seamless Dry-Fit Athletic T-Shirt",
     price: "00.00",
     category: "Men / Tops",
-    label: "Training essential",
+    label: "Everyday essential",
     colors: [
       { label: "Black", value: "#0c0c0c" },
       { label: "White", value: "#f7f7f7" },
       { label: "Blue", value: "#1557ff" },
     ],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    images: gallery("mens-short-sleeve-seamless-dry-fit-tshirt",6,),
+    images: ["/images/f10.jpeg", ...gallery("mens-short-sleeve-seamless-dry-fit-tshirt",6)],
   },
   {
     slug: "mens-athletic-training-shorts",
-    name: "Men's Athletic Training Shorts",
+    name: "Men's Athletic Shorts",
     price: "00.00",
     category: "Men / Bottoms",
     label: "Built to move",
@@ -114,7 +114,7 @@ export const apparelProducts: ApparelProduct[] = [
       { label: "Grey", value: "#767676" },
     ],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    images: gallery("mens-athletic-training-shorts",3,),
+    images: ["/images/f7.jpeg", ...gallery("mens-athletic-training-shorts",3)],
   },
   {
     slug: "flex-mens-dry-fit-fitness-trousers",
@@ -128,7 +128,7 @@ export const apparelProducts: ApparelProduct[] = [
       { label: "Navy", value: "#18243d" },
     ],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    images: gallery("flex-mens-dry-fit-fitness-trousers",6,),
+    images: ["/images/f5.jpeg", ...gallery("flex-mens-dry-fit-fitness-trousers",6)],
   },
   {
     slug: "mens-physique-zip-long-sleeve-tshirt",
@@ -142,10 +142,12 @@ export const apparelProducts: ApparelProduct[] = [
       { label: "Blue", value: "#1557ff" },
     ],
     sizes: ["S", "M", "L", "XL", "XXL"],
-    images: gallery("mens-physique-zip-long-sleeve-tshirt",10,),
+    images: ["/images/s3.jpeg", ...gallery("mens-physique-zip-long-sleeve-tshirt",10)],
   },
 ];
 
 export function getApparelProduct(slug: string) {
   return apparelProducts.find((product) => product.slug === slug);
 }
+
+

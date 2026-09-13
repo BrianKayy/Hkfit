@@ -30,7 +30,7 @@
   height: 100%;
   place-items: center;
   background: linear-gradient(145deg, #f8f8f8, #dedede);
-  color: #1557ff;
+  color: #736a53;
   font-size: 80px;
   font-weight: 900;
   letter-spacing: -0.13em;
@@ -67,8 +67,8 @@
 }
 
 .thumbnails button[aria-pressed="true"] {
-  border-color: #1557ff;
-  background: #1557ff;
+  border-color: #736a53;
+  background: #736a53;
   color: white;
 }
 
@@ -103,6 +103,6 @@
 }
 
 .navigation button:hover {
-  background: #1557ff;
+  background: #736a53;
   color: white;
 } 

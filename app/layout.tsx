@@ -5,8 +5,8 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "HkFitness",
-  description: "Premium apparel and personal coaching.",
+  title: "HKFitness | Considered Apparel",
+  description: "Considered silhouettes, refined essentials, and effortless everyday apparel for women and men.",
 };
 
 export default function RootLayout({

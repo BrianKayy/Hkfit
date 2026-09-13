@@ -74,7 +74,7 @@
 }
 
 .imageActions button:hover {
-  background: #1557ff;
+  background: #736a53;
   color: white;
 }
 
@@ -89,7 +89,7 @@
 }
 
 .imageFallback span {
-  color: #1557ff;
+  color: #736a53;
   font-size: 38px;
   font-weight: 900;
 }
@@ -227,7 +227,7 @@
 }
 
 .addButton :global(button:hover) {
-  background: #1557ff;
+  background: #736a53;
   transform: translateY(-2px);
 }
 
@@ -237,3 +237,4 @@
     transform: none;
   }
 }
+.titleRow{display:block}.titleRow h2{font-family:Arial,sans-serif;font-weight:400;font-size:13px;line-height:1.6}.titleRow strong{display:block;font-weight:400;font-size:11px;color:#726e64;padding-top:8px}.visual{background:#e9e6df}.label{background:#faf9f5;font-weight:400}.imageActions{opacity:1;transform:none}.visual:focus-within .imageActions{opacity:1;transform:none}.imageCount{display:none}.addButton :global(button){background:#282923;font-weight:400}.info{padding-top:20px}

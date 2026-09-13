@@ -1,61 +1,9 @@
 "use client";
-
 import Link from "next/link";
+import BrandLogo from "./BrandLogo";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useCart } from "./CartProvider";
+const links = [{label:"Collection",href:"/apparel"},{label:"Women",href:"/apparel?collection=Women"},{label:"Men",href:"/apparel?collection=Men"},{label:"Our world",href:"/about"}];
+export default function Navbar(){const pathname=usePathname();const [menuOpen,setMenuOpen]=useState(false);const {count}=useCart();return <header className="site-header"><div className="announcement">REFINED ESSENTIALS. A NEW WAY TO MOVE.</div><nav className="navbar" aria-label="Main navigation"><button className="menu-toggle" aria-label={menuOpen?"Close menu":"Open menu"} aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={()=>setMenuOpen(!menuOpen)}><span/><span/></button><div className="desktop-links">{links.map(l=><Link className="nav-link" key={l.label} href={l.href} aria-current={pathname===l.href?"page":undefined}>{l.label}</Link>)}</div><Link className="brand" href="/" aria-label="HKFitness home"><BrandLogo /></Link><div className="nav-actions"><Link href="/account" className="account-link" aria-label="Customer account"><svg width="18" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true"><circle cx="12" cy="7" r="3.5"/><path d="M4 22v-3a8 8 0 0 1 16 0v3"/></svg><span>Account</span></Link><Link href="/cart" className="bag-link" aria-label={`Shopping bag, ${count} items`}><span className="cart-icon"/><span>Bag ({count})</span></Link></div></nav>{menuOpen&&<nav id="mobile-menu" className="mobile-menu" aria-label="Mobile navigation">{[...links,{label:"My account",href:"/account"},{label:"Contact",href:"/contact"}].map(l=><Link key={l.label} href={l.href} onClick={()=>setMenuOpen(false)}>{l.label}<span>↗</span></Link>)}</nav>}</header>}
 
-const links = [
-  { label: "Home", href: "/" },
-  { label: "Apparel", href: "/apparel" },
-  { label: "Personal coaching", href: "/coaching" },
-  { label: "Contact", href: "/contact" },
-  { label: "About", href: "/about" },
-];
-
-export default function Navbar() {
-  const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => setMenuOpen(false), [pathname]);
-
-  return (
-    <header className="site-header">
-      <nav className="navbar" aria-label="Main navigation">
-        <button className="menu-toggle" type="button"
-          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={menuOpen} aria-controls="mobile-menu"
-          onClick={() => setMenuOpen((open) => !open)}>
-          <span /><span />
-        </button>
-
-        <div className="desktop-links">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href}
-              className={pathname === link.href ? "nav-link active" : "nav-link"}>
-              {link.label}
-            </Link>
-          ))}
-        </div>
-
-        <Link className="brand" href="/" aria-label="HkFitness home"><span>HK</span>FITNESS</Link>
-
-        <Link className="cart-link" href="/cart" aria-label="View shopping cart">
-          <span className="cart-icon" aria-hidden="true" />
-          <span className="cart-count">0</span>
-        </Link>
-      </nav>
-
-      <div id="mobile-menu" className={menuOpen ? "mobile-menu open" : "mobile-menu"}>
-        <div className="mobile-menu-inner">
-          {links.map((link, index) => (
-            <Link key={link.href} href={link.href}
-              className={pathname === link.href ? "mobile-link active" : "mobile-link"}>
-              <span>0{index + 1}</span>{link.label}
-            </Link>
-          ))}
-          <p>Train with purpose. Wear the standard.</p>
-        </div>
-      </div>
-    </header>
-  );
-}

@@ -43,7 +43,7 @@ export default function ProductGallery({
             HK
 
             <span>
-              {String(selectedImage + 1).padStart(2, "0")} / 08
+              {String(selectedImage + 1).padStart(2, "0")} / {String(product.images.length).padStart(2, "0")}
             </span>
           </div>
         ) : (
@@ -51,14 +51,14 @@ export default function ProductGallery({
             src={product.images[selectedImage]}
             alt={`${product.name}, gallery image ${selectedImage + 1}`}
             fill
-            priority
+            loading="eager"
             sizes="(max-width: 860px) 100vw, 62vw"
             onError={() => setImageFailed(true)}
           />
         )}
 
         <span>
-          {String(selectedImage + 1).padStart(2, "0")} / 08
+          {String(selectedImage + 1).padStart(2, "0")} / {String(product.images.length).padStart(2, "0")}
         </span>
 
         <div className={styles.navigation}>
@@ -96,3 +96,4 @@ export default function ProductGallery({
     </div>
   );
 }
+
