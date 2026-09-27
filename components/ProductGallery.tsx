@@ -1,99 +1,34 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import type { ApparelProduct } from "@/data/apparel";
+import ProductMedia from "./ProductMedia";
 import styles from "./ProductGallery.module.css";
 
-type ProductGalleryProps = {
+type Props = {
   product: ApparelProduct;
+  selectedImage?: number;
+  onSelect?: (index: number) => void;
 };
 
-export default function ProductGallery({
-  product,
-}: ProductGalleryProps) {
-  const [selectedImage, setSelectedImage] = useState(0);
-  const [imageFailed, setImageFailed] = useState(false);
-
-  function selectImage(index: number) {
-    setSelectedImage(index);
-    setImageFailed(false);
-  }
-
-  function showPreviousImage() {
-    const previousIndex =
-      (selectedImage - 1 + product.images.length) %
-      product.images.length;
-
-    selectImage(previousIndex);
-  }
-
-  function showNextImage() {
-    const nextIndex =
-      (selectedImage + 1) % product.images.length;
-
-    selectImage(nextIndex);
-  }
-
-  return (
-    <div className={styles.gallery}>
-      <div className={styles.primary}>
-        {imageFailed ? (
-          <div className={styles.fallback}>
-            HK
-
-            <span>
-              {String(selectedImage + 1).padStart(2, "0")} / {String(product.images.length).padStart(2, "0")}
-            </span>
-          </div>
-        ) : (
-          <Image
-            src={product.images[selectedImage]}
-            alt={`${product.name}, gallery image ${selectedImage + 1}`}
-            fill
-            loading="eager"
-            sizes="(max-width: 860px) 100vw, 62vw"
-            onError={() => setImageFailed(true)}
-          />
-        )}
-
-        <span>
-          {String(selectedImage + 1).padStart(2, "0")} / {String(product.images.length).padStart(2, "0")}
-        </span>
-
-        <div className={styles.navigation}>
-          <button
-            type="button"
-            onClick={showPreviousImage}
-            aria-label="View previous image"
-          >
-            ←
-          </button>
-
-          <button
-            type="button"
-            onClick={showNextImage}
-            aria-label="View next image"
-          >
-            →
-          </button>
-        </div>
-      </div>
-
-      <div className={styles.thumbnails}>
-        {product.images.map((image, index) => (
-          <button
-            key={image}
-            type="button"
-            aria-label={`View ${product.name} image ${index + 1}`}
-            aria-pressed={selectedImage === index}
-            onClick={() => selectImage(index)}
-          >
-            {String(index + 1).padStart(2, "0")}
-          </button>
-        ))}
-      </div>
+export default function ProductGallery({ product, selectedImage, onSelect }: Props) {
+  const [internalIndex, setInternalIndex] = useState(0);
+  const index = selectedImage ?? internalIndex;
+  const select = (next: number) => { setInternalIndex(next); onSelect?.(next); };
+  const count = product.images.length;
+  return <div className={styles.gallery}>
+    <div className={styles.primary}>
+      <ProductMedia src={product.images[index]} alt={`${product.name}, view ${index + 1}`} sizes="(max-width: 860px) 100vw, 55vw" eager />
+      {count > 0 && <span className={styles.count} aria-live="polite">{String(index + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}</span>}
+      {count > 1 && <div className={styles.navigation}>
+        <button type="button" onClick={() => select((index - 1 + count) % count)} aria-label="Previous product image">←</button>
+        <button type="button" onClick={() => select((index + 1) % count)} aria-label="Next product image">→</button>
+      </div>}
     </div>
-  );
+    {count > 1 && <div className={styles.thumbnails} aria-label="Product image gallery">
+      {product.images.map((src, i) => <button key={src} type="button" aria-label={`View ${product.name} image ${i + 1}`} aria-pressed={index === i} onClick={() => select(i)}>
+        <ProductMedia src={src} alt={`${product.name} thumbnail ${i + 1}`} sizes="90px" />
+      </button>)}
+    </div>}
+  </div>;
 }
-

@@ -1,5 +1,7 @@
 "use client";
 
+import { getApparelProduct } from "@/data/apparel";
+
 import {
   createContext,
   type ReactNode,
@@ -105,7 +107,19 @@ function readStoredCart() {
     if (stored.version !== STORAGE_VERSION || !Array.isArray(stored.items)) return [];
     return stored.items
       .filter(isStoredItem)
-      .map((item) => ({ ...item, quantity: clampQuantity(item.quantity) }));
+      .flatMap((item) => {
+        const product = getApparelProduct(item.slug);
+        const color = product?.colors.find((candidate) => candidate.label === item.color);
+        if (!product || !color || !item.size || !product.sizes.includes(item.size)) return [];
+        return [{
+          ...item,
+          name: product.name,
+          unitPriceMinor: parsePriceToMinor(product.price),
+          currency: "AED" as const,
+          image: color.image ?? product.images[0] ?? "",
+          quantity: clampQuantity(item.quantity),
+        }];
+      });
   } catch {
     return [];
   }

@@ -1,6 +1,12 @@
-.footer{background:#22231f;color:#e9e6dd;padding:65px 4vw 25px}.top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.3fr;gap:35px;padding-bottom:70px}.logo{font-family:Georgia,serif;font-size:48px;letter-spacing:-.06em;display:inline-flex;align-items:baseline;gap:9px}.logo span{font-family:Arial,sans-serif;font-size:10px;letter-spacing:.14em}.top p{font-size:12px;line-height:1.9;color:#afafa4}.top nav{display:flex;flex-direction:column;gap:16px;font-size:12px}.top nav h2{font:10px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;margin:10px 0 12px;color:#afafa4}.top a:hover{color:white}.note h2{font-size:42px;font-weight:400;line-height:1.1;margin:18px 0 24px}.bottom{border-top:1px solid #45463e;padding-top:25px;display:flex;justify-content:space-between;font-size:9px;color:#afafa4;letter-spacing:.06em}@media(max-width:700px){.top{grid-template-columns:1fr 1fr;gap:40px 20px}.footer{padding:45px 24px 24px}.bottom{flex-wrap:wrap;gap:20px}.note h2{font-size:34px}}
+.footer { background: #22261d; color: #ecefe4; padding: 70px 5vw 25px; }
+.top { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.3fr; gap: 40px; padding-bottom: 65px; }
+.logo { display: inline-block; margin-bottom: 20px; }
+.top p { font-size: 11px; line-height: 1.9; color: #acb39d; }
+.top nav { display: flex; flex-direction: column; gap: 16px; font-size: 11px; }
+.top nav h2 { font-size: 9px; text-transform: uppercase; letter-spacing: .13em; margin: 10px 0 15px; color: #acb39d; }
+.top a:hover { color: white; }
+.note h2 { font-size: 35px; font-weight: 450; line-height: 1.15; letter-spacing: -.025em; margin: 20px 0 28px; }
+.bottom { border-top: 1px solid #424938; padding-top: 24px; display: flex; justify-content: space-between; font-size: 9px; color: #a8af9b; gap: 20px; }
+@media(max-width:700px) { .top { grid-template-columns: 1fr 1fr; gap: 35px 20px; }.footer { padding: 45px 24px 24px; }.bottom { flex-wrap: wrap; }.note h2 { font-size: 28px; } }
 
-.logo { display: inline-block; margin-bottom: 15px; }
-.footer { padding: 80px 5vw 28px; }
-.top { padding-bottom: 75px; }
-@media (max-width: 700px) { .footer { padding: 50px 24px 24px; } }
+.top nav h2 { font-family: var(--font-body), Arial, sans-serif; }

@@ -1,37 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
+import ApparelProductCard from "@/components/ApparelProductCard";
+import ProductMedia from "@/components/ProductMedia";
 import { apparelProducts } from "@/data/apparel";
 import styles from "./page.module.css";
-const edit = [2, 7, 0, 3];
+
 export default function Home() {
+  const women = apparelProducts[2];
+  const men = apparelProducts[8];
+  const edit = [apparelProducts[0], apparelProducts[4], apparelProducts[5], apparelProducts[8]];
   return <main>
     <section className={styles.hero} aria-labelledby="campaign-title">
-      <div className={styles.heroVisual}>
-        <Image src="/images/hk-campaign.jpeg" alt="Two models wearing HK Fitness essentials in charcoal and grey against a sunlit brick wall" fill loading="eager" fetchPriority="high" sizes="100vw" />
+      <Image src="/images/hk-campaign.jpeg" alt="Two models wearing the HK Fitness collection in sunlight" fill loading="eager" fetchPriority="high" sizes="100vw" />
+      <div className={styles.shade} />
+      <div className={styles.heroContent}>
+        <p className="eyebrow">HK Fitness / Collection 2026</p>
+        <h1 id="campaign-title">Performance<br />in every thread</h1>
+        <div className={styles.heroBottom}><p>Apparel for women and men.<br />Explore the new collection.</p><Link href="/apparel">Explore the new collection <span>↗</span></Link></div>
       </div>
-      <div className={styles.heroCopy}>
-        <p className="eyebrow">HK Fitness — The everyday collection</p>
-        <h1 id="campaign-title">The art of<br /><em>moving well.</em></h1>
-        <div className={styles.heroBottom}>
-          <p>Refined in form. Effortless in motion.</p>
-          <div className={styles.heroActions}>
-            <Link href="/apparel?collection=Women">Shop women <span>↗</span></Link>
-            <Link href="/apparel?collection=Men">Shop men <span>↗</span></Link>
-          </div>
-        </div>
-      </div>
-      <span className={styles.campaignIndex}>COLLECTION 01 / EVERYDAY, ELEVATED</span>
+      <span className={styles.index}>01 — THE EVERYDAY SERIES</span>
     </section>
-    <div className={styles.strip}><span>Considered design</span><span>Everyday versatility</span><span>Understated by nature</span></div>
-    <section className={styles.section}>
-      <div className={styles.heading}><div><p className="eyebrow">01 / The curated edit</p><h2>Everyday. <em>Exceptional.</em></h2></div><Link className="text-link" href="/apparel">Explore the collection ↗</Link></div>
-      <div className={styles.products}>{edit.map(index => { const p = apparelProducts[index]; return <Link className={styles.product} key={p.slug} href={`/apparel/${p.slug}`}><div><Image src={p.images[0]} alt={p.name} fill sizes="(max-width: 700px) 45vw, 23vw"/><span>Discover ↗</span></div><p>{p.category}</p><h3>{p.name}</h3><small>{Number(p.price) === 0 ? "Price on request" : p.price}</small></Link>; })}</div>
+    <div className={styles.collectionNav}><span>Performance in every thread</span><Link href="/apparel?collection=Women">Women ↗</Link><Link href="/apparel?collection=Men">Men ↗</Link><Link href="/apparel">All pieces ↗</Link></div>
+    <section className={styles.edit}>
+      <div className={styles.heading}><div><p className="eyebrow">A fresh perspective</p><h2>Your next<br /><span>everyday favourites.</span></h2></div><Link className="text-link" href="/apparel">Shop the collection ↗</Link></div>
+      <div className={styles.grid}>{edit.map(p => <ApparelProductCard key={p.slug} product={p} />)}</div>
     </section>
-    <section className={styles.categories} aria-label="Shop by collection">
-      <Link href="/apparel?collection=Women"><Image src="/images/f3.jpeg" alt="Women's flared leggings" fill sizes="(max-width: 700px) 100vw, 50vw"/><div><p className="eyebrow">Form meets freedom</p><h2>For her.</h2><span>Shop women ↗</span></div></Link>
-      <Link href="/apparel?collection=Men"><Image src="/images/s3.jpeg" alt="Men's fitted zip top" fill sizes="(max-width: 700px) 100vw, 50vw"/><div><p className="eyebrow">The modern uniform</p><h2>For him.</h2><span>Shop men ↗</span></div></Link>
+    <section className={styles.collections} aria-label="Shop collections">
+      {[{product:women,title:"The women's edit.",collection:"Women",number:"01"},{product:men,title:"The men's edit.",collection:"Men",number:"02"}].map(({product,title,collection,number}) => <Link href={`/apparel?collection=${collection}`} key={collection}>
+        <div className={styles.collectionImage}><ProductMedia src={product.images[0]} alt={title} sizes="(max-width:700px) 100vw, 50vw" /><span>{number} / THE COLLECTION</span></div>
+        <div className={styles.collectionTitle}><h2>{title}</h2><span>Discover ↗</span></div>
+      </Link>)}
     </section>
-    <section className={styles.manifesto}><p className="eyebrow">The HK perspective</p><h2>Good style doesn’t<br />need to <em>say much.</em></h2><p>Clean lines. A considered palette. Pieces that belong together.<br />Discover a more effortless approach to getting dressed.</p><Link className="text-link" href="/about">Our philosophy ↗</Link></section>
+    <section className={styles.statement}><p className="eyebrow">The HK point of view</p><h2>Performance<br /><span>in every thread</span></h2><div><p>A considered wardrobe begins with pieces you want to wear again. Clean silhouettes, a confident palette, and room to make it your own.</p><Link className="text-link" href="/about">Inside HK Fitness ↗</Link></div></section>
+    <section className={styles.service}><div><span>01</span><h3>A complete wardrobe</h3><p>Discover ten pieces for your everyday rotation.</p></div><div><span>02</span><h3>Find your fit</h3><p>Explore the collection in sizes S to XL.</p></div><div><span>03</span><h3>Here to help</h3><p><Link href="/contact">Talk to our team about your next piece ↗</Link></p></div></section>
   </main>;
 }
-

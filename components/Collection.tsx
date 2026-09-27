@@ -1,7 +1,31 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import ApparelProductCard from "./ApparelProductCard";
 import { apparelProducts } from "@/data/apparel";
 import styles from "@/app/apparel/page.module.css";
-export default function Collection({collection}:{collection:string}){const [category,setCategory]=useState("All");const [query,setQuery]=useState("");const products=apparelProducts.filter(p=>(collection==="All"||p.category.startsWith(collection))&&(category==="All"||p.category.endsWith(category))&&p.name.toLowerCase().includes(query.toLowerCase()));return <section className={styles.collection}><div className={styles.collectionBar}><div><h2>{collection==="All"?"All apparel":collection}</h2><span>{products.length} pieces</span></div><div className={styles.filters}>{["All","Women","Men"].map(c=><Link key={c} className={collection===c?styles.active:""} href={c==="All"?"/apparel":`/apparel?collection=${c}`}>{c}</Link>)}</div></div><div className={styles.collectionBar}><div className={styles.filters}>{["All","Tops","Bottoms","Sets"].map(c=><button key={c} aria-pressed={category===c} className={category===c?styles.active:""} onClick={()=>setCategory(c)}>{c}</button>)}</div><input aria-label="Search apparel" placeholder="Find a piece…" value={query} onChange={e=>setQuery(e.target.value)} style={{background:"transparent",border:"none",borderBottom:"1px solid #ccc",padding:10,fontSize:12,maxWidth:"100%"}}/></div><div className={styles.grid}>{products.map(p=><ApparelProductCard key={p.slug} product={p}/>)}</div>{!products.length&&<p role="status">No pieces match your search. Try another name or category.</p>}</section>}
+
+export default function Collection({ collection }: { collection: string }) {
+  const [category, setCategory] = useState("All");
+  const [query, setQuery] = useState("");
+  const [sort, setSort] = useState("featured");
+  const products = apparelProducts.filter(p =>
+    (collection === "All" || p.category.startsWith(collection)) &&
+    (category === "All" || p.category.endsWith(category)) &&
+    p.name.toLowerCase().includes(query.toLowerCase())
+  ).sort((a,b) => sort === "low" ? Number(a.price.slice(4)) - Number(b.price.slice(4)) : sort === "high" ? Number(b.price.slice(4)) - Number(a.price.slice(4)) : 0);
+
+  return <section className={styles.collection}>
+    <div className={styles.collectionBar}>
+      <nav className={styles.collections} aria-label="Collections">{["All","Women","Men"].map(c => <Link key={c} aria-current={collection === c ? "page" : undefined} href={c === "All" ? "/apparel" : `/apparel?collection=${c}`}>{c === "All" ? "All pieces" : c}</Link>)}</nav>
+      <span className={styles.count} role="status">{products.length} pieces</span>
+    </div>
+    <div className={styles.tools}>
+      <div className={styles.filters} aria-label="Product categories">{["All","Tops","Bottoms","Layers","Sets"].map(c => <button key={c} aria-pressed={category === c} onClick={() => setCategory(c)}>{c}</button>)}</div>
+      <div className={styles.inputs}><input aria-label="Search apparel" placeholder="Find your next piece" value={query} onChange={e => setQuery(e.target.value)} /><select aria-label="Sort products" value={sort} onChange={e => setSort(e.target.value)}><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div>
+    </div>
+    <div className={styles.grid}>{products.map(p => <ApparelProductCard key={p.slug} product={p} />)}</div>
+    {!products.length && <div className={styles.empty}><h2>No pieces found.</h2><p>Try a different search or category.</p><button className="text-link" onClick={() => { setCategory("All"); setQuery(""); }}>Clear filters</button></div>}
+  </section>;
+}

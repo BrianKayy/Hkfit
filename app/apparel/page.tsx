@@ -1,3 +1,8 @@
 import Collection from "@/components/Collection";
-export const metadata={title:"The collection | HKFitness",description:"Discover refined everyday apparel for women and men."};
-export default async function ApparelPage({searchParams}:{searchParams:Promise<{collection?:string}>}){const params=await searchParams;const collection=["Women","Men"].includes(params.collection??"")?params.collection!:"All";return <main><header className="editorial-page" style={{minHeight:0,paddingBottom:0}}><p className="eyebrow">The everyday collection</p><h1 style={{marginBottom:20}}>Your next <em>essential.</em></h1><p>Considered pieces. Endless possibilities.</p></header><Collection key={collection} collection={collection}/></main>}
+import styles from "./page.module.css";
+export const metadata = { title: "The collection | HKFitness", description: "Shop the latest HKFitness apparel. Refined essentials for women and men, in sizes S to XL." };
+export default async function ApparelPage({ searchParams }: { searchParams: Promise<{ collection?: string }> }) {
+  const params = await searchParams;
+  const collection = ["Women","Men"].includes(params.collection ?? "") ? params.collection! : "All";
+  return <main><header className={styles.intro}><p className="eyebrow">HK Fitness / The new collection</p><div><h1>{collection === "All" ? "THE EVERYDAY EDIT." : `${collection.toUpperCase()}. REDEFINED.`}</h1><p>Clean lines. Confident colours.<br />The pieces you’ll keep coming back to.</p></div></header><Collection key={collection} collection={collection} /></main>;
+}

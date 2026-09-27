@@ -1,0 +1,3 @@
+.placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 22px; background: #eeede9; color: #74736c; padding: 16px; text-align: center; }
+.placeholder > span:last-child { font-size: 9px; letter-spacing: .11em; text-transform: uppercase; }
+.mark { font-size: clamp(24px, 4vw, 56px); font-weight: 500; letter-spacing: -.075em; color: #a3a39a; }

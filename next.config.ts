@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
         hostname: "pwipbjkeudawdteblpbt.supabase.co",
         port: "",
         pathname:
-          "/storage/v1/object/public/hkfitness-images/**",
+          "/storage/v1/object/public/store%20images/**",
       },
     ],
   },
