@@ -6,7 +6,7 @@ import styles from "./ApparelProductCard.module.css";
 export default function ApparelProductCard({ product }: { product: ApparelProduct }) {
   return <article className={styles.card}>
     <Link href={`/apparel/${product.slug}`} className={styles.visual} aria-label={`View ${product.name}`}>
-      <ProductMedia src={product.images[0]} alt={product.name} sizes="(max-width: 600px) 45vw, (max-width: 1000px) 30vw, 23vw" />
+      <ProductMedia src={product.images[0]} alt={product.name} sizes="(max-width: 700px) 46vw, (max-width: 1000px) 31vw, 23vw" />
       <span className={styles.tag}>{product.images.length ? product.label : "Preview"}</span>
       <span className={styles.discover}>Discover this piece <span>↗</span></span>
     </Link>

@@ -1,6 +1,6 @@
 import Collection from "@/components/Collection";
 import styles from "./page.module.css";
-export const metadata = { title: "The collection | HKFitness", description: "Shop the latest HKFitness apparel. Refined essentials for women and men, in sizes S to XL." };
+export const metadata = { title: "Activewear for Women & Men | HKFitness", description: "Explore HKFitness activewear sets, leggings, shirts, shorts and pants. Sizes S–XL, with prices in AED. Performance in every thread.", alternates: { canonical: "/apparel" } };
 export default async function ApparelPage({ searchParams }: { searchParams: Promise<{ collection?: string }> }) {
   const params = await searchParams;
   const collection = ["Women","Men"].includes(params.collection ?? "") ? params.collection! : "All";

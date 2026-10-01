@@ -22,7 +22,7 @@ export default function Collection({ collection }: { collection: string }) {
       <span className={styles.count} role="status">{products.length} pieces</span>
     </div>
     <div className={styles.tools}>
-      <div className={styles.filters} aria-label="Product categories">{["All","Tops","Bottoms","Layers","Sets"].map(c => <button key={c} aria-pressed={category === c} onClick={() => setCategory(c)}>{c}</button>)}</div>
+      <div className={styles.filters} aria-label="Product categories">{["All","Tops","Bottoms","Sets"].map(c => <button key={c} aria-pressed={category === c} onClick={() => setCategory(c)}>{c}</button>)}</div>
       <div className={styles.inputs}><input aria-label="Search apparel" placeholder="Find your next piece" value={query} onChange={e => setQuery(e.target.value)} /><select aria-label="Sort products" value={sort} onChange={e => setSort(e.target.value)}><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div>
     </div>
     <div className={styles.grid}>{products.map(p => <ApparelProductCard key={p.slug} product={p} />)}</div>

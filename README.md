@@ -25,9 +25,11 @@ Reference: https://supabase.com/docs/guides/auth/passwords
 
 ## Catalog and commerce
 
-Edit `data/apparel.ts` for the ten-product catalog, AED prices, colour-to-photo mappings and confirmed S–XL size range. `data/product-images.json` contains the exact filenames of 129 photos in the public Supabase `store images` bucket. Preserve filename casing and spaces. After uploading additional photography, add the filenames to this manifest and update the product colour mappings. The Vital Sports Bra currently has no photography or confirmed colours and appears as Coming soon.
+Edit `data/apparel.ts` for the eight-product catalog, AED prices, colour-to-photo mappings and confirmed S–XL size range. `data/product-images.json` contains the exact filenames of 129 photos in the public Supabase `store images` bucket. Preserve filename casing and spaces. After uploading additional photography, add the filenames to this manifest and update the product colour mappings.
 
-Galleries support thumbnails and previous/next navigation. Colour selection switches to the corresponding photograph. Large PNG originals load directly from storage to avoid image-optimizer timeouts. The supplied local logo and campaign photograph are retained; old product assets have been removed. Saved bags reconcile prices and variants against the current catalog.
+Galleries support thumbnails and previous/next navigation. Colour selection switches to the corresponding photograph. Product photos are precompressed WebP assets in `public/images/catalog`, mapped by `data/optimized-images.json`. Next.js serves responsive sizes from these local assets, including small gallery thumbnails; shoppers do not download the original Supabase PNGs. The supplied local logo and campaign photograph are retained. Saved bags reconcile prices and variants against the current catalog.
+
+After updating `data/product-images.json`, run `npm run images:optimize` with network access before building. The script downloads only uncached originals, scales them to at most 1600×2000, and writes WebP copies at quality 80. It preserves the Supabase originals and records missing uploads as null so broken images are excluded from galleries. Commit the generated assets and manifest with the catalog changes. The October 2 optimization produced 123 available photos totaling about 6.3 MB; six listed uploads were missing. To replace an existing photo, use a new storage filename and update the source manifest so caches also receive a new URL.
 
 Checkout is not connected. Customer care opens a prepared email in the visitor's email app and does not claim to submit an enquiry.
 

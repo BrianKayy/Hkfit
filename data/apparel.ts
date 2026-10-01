@@ -1,4 +1,5 @@
 import imageFiles from "./product-images.json";
+import optimizedImages from "./optimized-images.json";
 
 export type ProductColor = { label: string; value: string; image?: string };
 export type ApparelProduct = {
@@ -17,7 +18,9 @@ export type ApparelProduct = {
 export const STORAGE_BASE = "https://pwipbjkeudawdteblpbt.supabase.co/storage/v1/object/public/store%20images";
 type Folder = keyof typeof imageFiles;
 export function imageUrl(folder: Folder, file: string) {
-  return `${STORAGE_BASE}/${encodeURIComponent(folder)}/${encodeURIComponent(file)}`;
+  const source = `${STORAGE_BASE}/${encodeURIComponent(folder)}/${encodeURIComponent(file)}`;
+  // Assets are compressed ahead of time, so shoppers never wait for storage downloads.
+  return (optimizedImages as Record<string, string | null>)[source] ?? "";
 }
 
 const palette: Record<string, string> = {
@@ -29,7 +32,7 @@ type ColorSpec = [label: string, filenameMatch: string];
 
 function product(folder: Folder, slug: string, name: string, price: number, category: string,
   description: string, includes: string, colorSpecs: ColorSpec[], cover?: string): ApparelProduct {
-  const files = [...imageFiles[folder]];
+  const files = imageFiles[folder].filter(file => Boolean(imageUrl(folder, file)));
   // Prefer the named front view; preserve every verified upload in the gallery.
   if (cover && files.includes(cover)) {
     files.splice(files.indexOf(cover), 1);
@@ -48,23 +51,17 @@ function product(folder: Folder, slug: string, name: string, price: number, cate
 const womenColors: ColorSpec[] = [["Black", "BLACK"], ["Burgundy", "BURG"], ["Charcoal", "DEEP GREY"], ["Grey", "GREY SET"], ["Pink", "PINK"]];
 
 export const apparelProducts: ApparelProduct[] = [
-  product("Leggings-normal", "womens-essential-leggings", "Essential Leggings", 119, "Women / Bottoms",
-    "A clean, close-fitting silhouette for an effortless everyday wardrobe. Pair with the Seamless Jacket to complete the look.",
-    "One pair of leggings. Other pieces shown are styled separately.", womenColors, "BLACK SET WITH LOGOjpg (AI Fashion Models).png"),
-  product("Leggings-flarred", "womens-flared-leggings", "Flared Leggings", 149, "Women / Bottoms",
-    "A fitted leg with a flared finish. A considered foundation for your everyday rotation, styled your way.",
-    "One pair of flared leggings. Tops and jackets shown are sold separately.",
+  product("Leggings-normal", "Women’s 3 Set Seamless Active Wear", "Women’s 3 Set Seamless Active Wear", 199, "Women / Sets",
+    "A coordinated three-piece seamless activewear set for your everyday rotation. Wear together or style each piece your way.",
+    "One three-piece seamless activewear set.", womenColors, "BLACK SET WITH LOGOjpg (AI Fashion Models).png"),
+  product("Leggings-flarred", "womens-flared-leggings", "Women 2 Set Seamless Wide Leg Active Wear", 189, "Women / Sets",
+    "A coordinated two-piece seamless activewear set with a wide-leg silhouette. An effortless look, styled your way.",
+    "One two-piece seamless wide-leg activewear set.",
     [["Black","FLARED BLACK"],["Deep purple","DEEP PURPLE"],["Pink","PINK"],["Purple","FLARED PURPLE"],["Sky blue","SKY BLUE"]], "FLARED BLACK SET (AI Fashion Models).jpg"),
   product("leggings-flared-high-waist", "womens-high-waisted-v-flare-leggings", "High-Waist Flared Leggings", 149, "Women / Bottoms",
     "A high-rise silhouette with a flared leg. Wear with your favourite essentials for a balanced, understated look.",
     "One pair of high-waist flared leggings.",
     [["Black","BLACK"],["Green","GREEN"],["Sky blue","SKY BLUE"],["White","WHITE"]], "FLARRED BLACK (AI Fashion Models).jpg"),
-  product("Vital-sports-bra", "womens-vital-sports-bra", "Vital Sports Bra", 99, "Women / Tops",
-    "The newest addition to the women’s collection. Product photography and colour details will be available soon.",
-    "One sports bra.", []),
-  product("Seamless-jacket", "womens-seamless-jacket", "Seamless Jacket", 149, "Women / Layers",
-    "A streamlined layer to finish the look. Style with coordinating leggings or mix into your everyday wardrobe.",
-    "One seamless jacket. Leggings and other pieces shown are sold separately.", womenColors, "BLACK SET WITH LOGOjpg (AI Fashion Models).png"),
   product("Men-longsleeve-shirt", "mens-physique-zip-long-sleeve-tshirt", "Long-Sleeve Shirt", 99, "Men / Tops",
     "Clean lines and long sleeves. An understated essential to pair with shorts, trousers, or your everyday layers.",
     "One long-sleeve shirt. Bottoms shown are sold separately.",

@@ -14,5 +14,5 @@ export default function ProductMedia({ src, alt, sizes = "50vw", eager = false }
       <span>{src ? "Image temporarily unavailable" : "Photography coming soon"}</span>
     </div>
   );
-  return <Image src={src} alt={alt} fill sizes={sizes} unoptimized={src.toLowerCase().endsWith(".png")} loading={eager ? "eager" : "lazy"} onError={() => setFailedSrc(src)} />;
+  return <Image src={src} alt={alt} fill sizes={sizes} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} onError={() => setFailedSrc(src)} />;
 }

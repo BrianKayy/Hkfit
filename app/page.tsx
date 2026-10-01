@@ -4,11 +4,12 @@ import ApparelProductCard from "@/components/ApparelProductCard";
 import ProductMedia from "@/components/ProductMedia";
 import { apparelProducts } from "@/data/apparel";
 import styles from "./page.module.css";
+export const metadata = { alternates: { canonical: "/" } };
 
 export default function Home() {
   const women = apparelProducts[2];
-  const men = apparelProducts[8];
-  const edit = [apparelProducts[0], apparelProducts[4], apparelProducts[5], apparelProducts[8]];
+  const men = apparelProducts.find(p => p.slug === "mens-lightweight-two-piece-athletic-set")!;
+  const edit = [apparelProducts[0], apparelProducts[1], apparelProducts.find(p => p.slug === "mens-physique-zip-long-sleeve-tshirt")!, men];
   return <main>
     <section className={styles.hero} aria-labelledby="campaign-title">
       <Image src="/images/hk-campaign.jpeg" alt="Two models wearing the HK Fitness collection in sunlight" fill loading="eager" fetchPriority="high" sizes="100vw" />
@@ -32,6 +33,6 @@ export default function Home() {
       </Link>)}
     </section>
     <section className={styles.statement}><p className="eyebrow">The HK point of view</p><h2>Performance<br /><span>in every thread</span></h2><div><p>A considered wardrobe begins with pieces you want to wear again. Clean silhouettes, a confident palette, and room to make it your own.</p><Link className="text-link" href="/about">Inside HK Fitness ↗</Link></div></section>
-    <section className={styles.service}><div><span>01</span><h3>A complete wardrobe</h3><p>Discover ten pieces for your everyday rotation.</p></div><div><span>02</span><h3>Find your fit</h3><p>Explore the collection in sizes S to XL.</p></div><div><span>03</span><h3>Here to help</h3><p><Link href="/contact">Talk to our team about your next piece ↗</Link></p></div></section>
+    <section className={styles.service}><div><span>01</span><h3>A complete wardrobe</h3><p>Discover {apparelProducts.length} pieces for your everyday rotation.</p></div><div><span>02</span><h3>Find your fit</h3><p>Explore the collection in sizes S to XL.</p></div><div><span>03</span><h3>Here to help</h3><p><Link href="/contact">Talk to our team about your next piece ↗</Link></p></div></section>
   </main>;
 }
