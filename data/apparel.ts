@@ -80,5 +80,10 @@ export const apparelProducts: ApparelProduct[] = [
     "The everyday short-sleeve essential. A pared-back piece that works with the rest of your wardrobe.",
     "One short-sleeve shirt.", [["Black","04.39.01 (2)"],["Grey","04.39.01 (1)"],["Teal","04.39.01.jpeg"]], "WhatsApp Image 2026-09-27 at 04.39.01 (2).jpeg"),
 ];
-export function getApparelProduct(slug: string) { return apparelProducts.find(product => product.slug === slug); }
+export function getApparelProduct(slug: string) {
+  // Requests may contain an encoded segment while static params use the catalog text.
+  let decodedSlug = slug;
+  try { decodedSlug = decodeURIComponent(slug); } catch { return undefined; }
+  return apparelProducts.find(product => product.slug === decodedSlug);
+}
 
