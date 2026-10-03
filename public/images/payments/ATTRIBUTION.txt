@@ -1,0 +1,6 @@
+Payment logos from datatrans/payment-logos
+https://github.com/datatrans/payment-logos
+Unmodified SVG assets, licensed under Creative Commons Attribution-ShareAlike 4.0 International.
+https://creativecommons.org/licenses/by-sa/4.0/
+Full license: LICENSE.txt in this directory.
+Brand names and trademarks belong to their respective owners.
