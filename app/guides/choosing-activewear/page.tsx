@@ -1,3 +1,4 @@
+import ArrowIcon from "@/components/ArrowIcon";
 import Link from "next/link";
 import { apparelProducts } from "@/data/apparel";
 import { productPath } from "@/lib/seo";
@@ -14,6 +15,6 @@ export default function BuyingGuide() {
       <h2>Check fit before choosing a size.</h2><p>HKFitness products are offered in S, M, L and XL. A size label alone does not describe the fit of every garment. If you are between sizes or unsure about a particular style, <Link href="/contact">ask our team for help</Link> before ordering. Check the gallery for the silhouette you prefer.</p>
       <h2>What to check when shopping in Dubai.</h2><p>Consider where you will wear the outfit: indoors, outdoors or as an everyday layer. HKFitness delivers across the UAE, including Dubai, within a maximum of 3 days. Before ordering, confirm delivery charges, the applicable return or exchange terms and any fabric details that matter to you with our team. A product photograph cannot establish fabric composition or technical performance.</p>
       <h2>Compare colours and included pieces.</h2><p>On each product page, select a colour to view its associated photograph and use the gallery thumbnails for additional views. Screen settings can affect how colours appear. The included-items description explains what you are purchasing; other styling pieces in photographs may be sold separately.</p>
-      <nav aria-label="Shop activewear"><Link href="/collections/womens-activewear">Women’s activewear ↗</Link><Link href="/collections/mens-activewear">Men’s activewear ↗</Link><Link href="/collections/seamless-activewear-sets">Seamless sets ↗</Link></nav>
+      <nav aria-label="Shop activewear"><Link href="/collections/womens-activewear">Women’s activewear <ArrowIcon /></Link><Link href="/collections/mens-activewear">Men’s activewear <ArrowIcon /></Link><Link href="/collections/seamless-activewear-sets">Seamless sets <ArrowIcon /></Link></nav>
     </article></main>;
 }

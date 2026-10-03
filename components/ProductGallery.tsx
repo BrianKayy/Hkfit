@@ -1,5 +1,6 @@
 "use client";
 
+import ArrowIcon from "@/components/ArrowIcon";
 import { useState } from "react";
 import type { ApparelProduct } from "@/data/apparel";
 import ProductMedia from "./ProductMedia";
@@ -21,8 +22,8 @@ export default function ProductGallery({ product, selectedImage, onSelect }: Pro
       <ProductMedia src={product.images[index]} alt={`${product.name}, view ${index + 1}`} sizes="(max-width: 860px) 100vw, 55vw" eager />
       {count > 0 && <span className={styles.count} aria-live="polite">{String(index + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}</span>}
       {count > 1 && <div className={styles.navigation}>
-        <button type="button" onClick={() => select((index - 1 + count) % count)} aria-label="Previous product image">←</button>
-        <button type="button" onClick={() => select((index + 1) % count)} aria-label="Next product image">→</button>
+        <button type="button" onClick={() => select((index - 1 + count) % count)} aria-label="Previous product image"><ArrowIcon direction="left" /></button>
+        <button type="button" onClick={() => select((index + 1) % count)} aria-label="Next product image"><ArrowIcon direction="right" /></button>
       </div>}
     </div>
     {count > 1 && <div className={styles.thumbnails} aria-label="Product image gallery">

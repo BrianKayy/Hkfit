@@ -64,3 +64,6 @@ button:disabled { cursor: default; opacity: .55; }
   .announcement { font-size: 7px; letter-spacing: .12em; }
 }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior: auto!important; transition: none!important; animation: none!important; } }
+
+/* Vector arrows stay consistent across mobile system fonts. */
+.arrow-icon { display: inline-block; flex-shrink: 0; vertical-align: -0.12em; width: 1em; height: 1em; }

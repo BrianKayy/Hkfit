@@ -1,3 +1,4 @@
+import ArrowIcon from "@/components/ArrowIcon";
 import Link from "next/link";
 import type { ApparelProduct } from "@/data/apparel";
 import ProductMedia from "./ProductMedia";
@@ -8,7 +9,7 @@ export default function ApparelProductCard({ product }: { product: ApparelProduc
     <Link href={`/apparel/${product.slug}`} className={styles.visual} aria-label={`View ${product.name}`}>
       <ProductMedia src={product.images[0]} alt={product.name} sizes="(max-width: 700px) 46vw, (max-width: 1000px) 31vw, 23vw" />
       <span className={styles.tag}>{product.images.length ? product.label : "Preview"}</span>
-      <span className={styles.discover}>Discover this piece <span>↗</span></span>
+      <span className={styles.discover}>Discover this piece <span><ArrowIcon /></span></span>
     </Link>
     <div className={styles.info}>
       <p>{product.category}</p>

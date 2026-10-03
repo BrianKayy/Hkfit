@@ -1,5 +1,6 @@
 "use client";
 
+import ArrowIcon from "@/components/ArrowIcon";
 import { useState } from "react";
 import Link from "next/link";
 import type { ApparelProduct } from "@/data/apparel";
@@ -46,11 +47,11 @@ export default function ProductDetail({ product }: { product: ApparelProduct }) 
       <div className={styles.purchase}>
         {canAdd ? <AddToCartButton item={{ slug: product.slug, name: product.name, price: product.price, image: selectedColor?.image ?? product.images[0] ?? "", color, size }} /> : <button type="button" disabled={!color} onClick={() => setSizeError(true)}>{color ? "Select a size" : "Coming soon"}<span>+</span></button>}
       </div>
-      <p className={styles.help}>Unsure about your fit? <Link href="/contact">Ask us ↗</Link></p>
+      <p className={styles.help}>Unsure about your fit? <Link href="/contact">Ask us <ArrowIcon /></Link></p>
       <div className={styles.accordions}>
         <details open><summary>What’s included <span>+</span></summary><p>{product.includes}</p></details>
         <details><summary>Size & colour <span>+</span></summary><p>Available sizes: {product.sizes.join(", ")}. Select your size and colour before adding to your bag. Colours may appear slightly different across screens.</p></details>
-        <details><summary>Delivery & assistance <span>+</span></summary><p>Delivery across the UAE takes a maximum of 3 days. Contact our team for delivery charges and ordering assistance. <Link href="/contact">Get in touch ↗</Link></p></details>
+        <details><summary>Delivery & assistance <span>+</span></summary><p>Delivery across the UAE takes a maximum of 3 days. Contact our team for delivery charges and ordering assistance. <Link href="/contact">Get in touch <ArrowIcon /></Link></p></details>
       </div>
     </div>
   </section>;

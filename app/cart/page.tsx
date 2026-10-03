@@ -1,5 +1,6 @@
 "use client";
 
+import ArrowIcon from "@/components/ArrowIcon";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -62,7 +63,7 @@ export default function CartPage() {
           <span aria-hidden="true">HK / 00</span>
           <h2 id="empty-cart-title">Your cart is empty.</h2>
           <p>Explore performance apparel built to move through every part of your day.</p>
-          <Link href="/apparel">Shop the collection <span aria-hidden="true">↗</span></Link>
+          <Link href="/apparel">Shop the collection <span aria-hidden="true"><ArrowIcon /></span></Link>
         </section>
       ) : (
         <section className={styles.cartLayout} aria-label="Shopping cart">
@@ -150,10 +151,10 @@ export default function CartPage() {
               <div className={styles.total}><dt>Estimated total</dt><dd>{(items.some(item => item.unitPriceMinor === 0) ? "Price on request" : formatCartMoney(subtotalMinor, currency))}</dd></div>
             </dl>
             <button className={styles.checkout} type="button" disabled title="Payment checkout will be connected next">
-              Online checkout coming soon <span aria-hidden="true">→</span>
+              Online checkout coming soon <span aria-hidden="true"><ArrowIcon direction="right" /></span>
             </button>
             <p className={styles.checkoutNote}>Your selection is saved on this device. Contact customer care for pricing and ordering assistance.</p>
-            <Link className={styles.continue} href="/apparel">← Continue shopping</Link>
+            <Link className={styles.continue} href="/apparel"><ArrowIcon direction="left" /> Continue shopping</Link>
           </aside>
         </section>
       )}
