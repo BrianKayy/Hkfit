@@ -50,7 +50,7 @@ export default function ProductDetail({ product }: { product: ApparelProduct }) 
       <div className={styles.accordions}>
         <details open><summary>What’s included <span>+</span></summary><p>{product.includes}</p></details>
         <details><summary>Size & colour <span>+</span></summary><p>Available sizes: {product.sizes.join(", ")}. Select your size and colour before adding to your bag. Colours may appear slightly different across screens.</p></details>
-        <details><summary>Delivery & assistance <span>+</span></summary><p>Contact our team for delivery availability and ordering assistance. <Link href="/contact">Get in touch ↗</Link></p></details>
+        <details><summary>Delivery & assistance <span>+</span></summary><p>Delivery across the UAE takes a maximum of 3 days. Contact our team for delivery charges and ordering assistance. <Link href="/contact">Get in touch ↗</Link></p></details>
       </div>
     </div>
   </section>;
